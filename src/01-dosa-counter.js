@@ -3,7 +3,7 @@
  *
  * Raju ka South Indian dosa counter hai Bangalore mein. Customer aata hai,
  * dosa ka type bolta hai, kitne chahiye bolta hai, aur spicy chahiye ya nahi.
- * Tujhe order calculate karke bill banana hai.
+ * Tujhe order calculate karke bill banana hai. 
  *
  * Rules:
  *   - Dosa prices: plain=40, masala=60, onion=50, butter=70, paper=90, cheese=80
@@ -32,5 +32,71 @@
  *   // => { type: "plain", quantity: 1, pricePerDosa: 40, total: 40 }
  */
 export function calculateDosaOrder(type, quantity = 1, isSpicy = false) {
-  // Your code here
+  
+  if(typeof(type)!='string') return null;
+
+  if(quantity<=0 || typeof(quantity)!='number' || Number.isNaN(quantity)) return null;
+  let pricePerDosa = 0;
+  let total = 0;
+
+  switch (type){
+    case "plain":
+      if(isSpicy){
+        pricePerDosa = 40 + 10;
+      }else{
+        pricePerDosa = 40;
+      }
+
+      total = pricePerDosa * quantity ;
+       return {type : type , quantity : quantity , pricePerDosa : pricePerDosa , total : total};
+    case "masala":
+      if(isSpicy){
+        pricePerDosa = 60 + 10;
+      }else{
+        pricePerDosa = 60;
+      }
+
+      total = pricePerDosa * quantity ;
+       return {type : type , quantity : quantity , pricePerDosa : pricePerDosa , total : total};
+      
+    case "onion":
+        if(isSpicy){
+        pricePerDosa = 50 + 10;
+      }else{
+        pricePerDosa = 50;
+      }
+
+      total = pricePerDosa * quantity ;
+       return {type : type , quantity : quantity , pricePerDosa : pricePerDosa , total : total};
+    case "butter":
+      if(isSpicy){
+        pricePerDosa = 70 + 10;
+      }else{
+        pricePerDosa = 70;
+      }
+
+      total = pricePerDosa * quantity ;
+       return {type : type , quantity : quantity , pricePerDosa : pricePerDosa , total : total};
+    case "paper":
+      if(isSpicy){
+        pricePerDosa = 90 + 10;
+      }else{
+        pricePerDosa = 90;
+      }
+
+      total = pricePerDosa * quantity ;
+       return {type : type , quantity : quantity , pricePerDosa : pricePerDosa , total : total};
+    case "cheese":
+      if(isSpicy){
+        pricePerDosa = 80 + 10;
+      }else{
+        pricePerDosa = 80;
+      }
+
+      total = pricePerDosa * quantity ;
+       return {type : type , quantity : quantity , pricePerDosa : pricePerDosa , total : total};
+    default :
+         return null;
+  }
+
 }
