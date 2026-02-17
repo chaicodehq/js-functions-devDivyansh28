@@ -84,5 +84,15 @@ export function createTicketPricer(basePrice) {
 }
 
 export function createRatingCalculator(weights) {
-  // Your code here
+  
+  let AvgWeight = null;
+  return (typeof weights !== 'object' || weights === null || weights ===undefined)? null : (scores) => {
+
+    for(const weight in weights){
+      AvgWeight+= weights[weight] * scores [weight];
+    }
+
+    return AvgWeight;
+    
+  }
 }
