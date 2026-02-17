@@ -45,7 +45,27 @@
  *   pricer("gold", true)  // => 200 * 1.5 * 1.3 = 390
  */
 export function createDialogueWriter(genre) {
-  // Your code here
+  const genrelist = ["action","romance","comedy","drama"];
+  if(!genrelist.includes(genre)) return null;
+  return (hero,villain) => {
+    if(hero===undefined ||hero.length===0|| villain===undefined ||villain.length===0) return "...";
+    switch (genre) {
+      case "action":
+        return `${hero} says: 'Tujhe toh main dekh lunga, ${villain}!'`;
+        break;
+      case "romance":
+        return `${hero} whispers: '${villain}, tum mere liye sab kuch ho'`;
+        break;
+      case "comedy":
+        return `${hero} laughs: '${villain} bhai, kya kar rahe ho yaar!'`;
+        break;
+      case "drama":
+        return `${hero} cries: '${villain}, tune mera sab kuch cheen liya!'`;
+        break;
+      default :
+      return "...";
+    }
+  }
 }
 
 export function createTicketPricer(basePrice) {
