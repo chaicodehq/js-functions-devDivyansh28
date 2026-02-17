@@ -69,7 +69,18 @@ export function createDialogueWriter(genre) {
 }
 
 export function createTicketPricer(basePrice) {
-  // Your code here
+
+ return (typeof basePrice !== "number" || !Number.isInteger(basePrice) || basePrice <= 0) ? null : (seatType, isWeekend = false) => {
+      const seatTypes = {
+        silver : 1 ,
+        gold : 1.5,
+        platinum : 2
+      }
+
+      if (!seatTypes.hasOwnProperty(seatType)) return null;
+
+      return (isWeekend)? Math.round(basePrice * seatTypes[seatType] * 1.3) : Math.round(basePrice * seatTypes[seatType]);
+   }
 }
 
 export function createRatingCalculator(weights) {
