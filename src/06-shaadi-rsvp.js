@@ -9,7 +9,7 @@
  *
  *   1. processGuests(guests, filterFn)
  *      - guests: array of guest objects
- *      - filterFn: callback function that takes a guest, returns true/false
+ *      - filterFn: callback function that takes a guest, returns true/false 
  *      - Returns: array of guests for which filterFn returned true
  *      - Agar guests not array or filterFn not function, return []
  *
@@ -46,17 +46,38 @@
  *   // => "Amit is coming!"
  */
 export function processGuests(guests, filterFn) {
-  // Your code here
+  if(!Array.isArray(guests) || typeof(filterFn)!=='function') return [];
+  let filterArray = [];
+  for(const guest of guests){
+    if(filterFn(guest)){
+      filterArray.push(guest);
+    }
+  }
+  return filterArray;
 }
 
 export function notifyGuests(guests, notifyCallback) {
-  // Your code here
+  if(!Array.isArray(guests) || typeof(notifyCallback)!=='function') return [];
+  let guestResponse = [];
+  guests.forEach(element => {
+     guestResponse.push(notifyCallback(element));
+  });
+
+  return guestResponse;
 }
 
 export function handleRSVP(guest, onAccept, onDecline) {
-  // Your code here
+  if(guest===undefined || guest ===null || typeof(onAccept) !== 'function' || typeof(onDecline)!=='function') return null;
+  if(guest.rsvp==="yes") return onAccept(guest);
+  if(guest.rsvp==="no") return onDecline(guest);
+  return null;
 }
 
 export function transformGuestList(guests, ...transformFns) {
-  // Your code here
+  if(!Array.isArray(guests)) return [];
+  for(const func of transformFns){
+    guests = func(guests);
+  }
+  return guests;
+  
 }
