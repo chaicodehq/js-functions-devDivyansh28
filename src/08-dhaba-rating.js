@@ -45,7 +45,7 @@
  *   // => [{ rating: 5 }, { rating: 3 }]
  */
 export function createFilter(field, operator, value) {
-  // Your code here
+  return (field , operator , value) => 
 }
 
 export function createSorter(field, order = "asc") {

@@ -18,7 +18,9 @@
  *      - e.g., [1, [2, [3, 4]], 5] => 15
  *      - Skip non-number values
  *      - Base case: empty array => 0
- *      - Agar input not array, return 0
+ *      - Agar input not array, return 0 
+ * 
+ *  
  *
  *   3. flattenArray(arr)
  *      - Flatten an arbitrarily nested array into a single flat array
@@ -53,15 +55,43 @@
  *   generatePattern(3)        // => ["*", "**", "***", "**", "*"]
  */
 export function repeatChar(char, n) {
-  // Your code here
+  if(char===undefined || typeof(char)!=='string' || char.length===0 ) return "";
+  if(n<=0) return "";
+  return char + repeatChar(char , n-1);
 }
 
 export function sumNestedArray(arr) {
-  // Your code here
+
+  if(!Array.isArray(arr)) return 0;
+   
+  if(arr.length===0) return 0;
+
+  const [first,...rest]=arr;
+
+  if(typeof(first)==='number'){
+    return first + sumNestedArray(rest);
+  }
+
+  if(Array.isArray(first)){
+    return sumNestedArray(first) + sumNestedArray(rest);
+  }
+
+  return sumNestedArray(rest);
+  
 }
 
 export function flattenArray(arr) {
-  // Your code here
+  if(!Array.isArray(arr)) return [];
+ 
+  if(arr.length===0) return [];
+  const [first,...rest] = arr;
+  if(Array.isArray(first)){
+    return [...flattenArray(first),...flattenArray(rest)];
+  }
+  if(typeof first ==='number'){
+    return [first , ...flattenArray(rest)];
+  }
+  
 }
 
 export function isPalindrome(str) {
