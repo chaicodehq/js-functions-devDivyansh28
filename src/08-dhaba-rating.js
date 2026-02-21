@@ -44,9 +44,10 @@
  *   [{ rating: 3 }, { rating: 5 }].sort(byRating)
  *   // => [{ rating: 5 }, { rating: 3 }]
  */
-export function createFilter(field, operator, value) {
-  return (field , operator , value) => 
-}
+// export function createFilter(field, operator, value) {
+//   return (field , operator , value) => 
+
+// }
 
 export function createSorter(field, order = "asc") {
   // Your code here

@@ -1,3 +1,5 @@
+import { clear } from "node:console";
+
 /**
  * 🎨 Mehndi Pattern Maker - Recursion
  *
@@ -81,23 +83,48 @@ export function sumNestedArray(arr) {
 }
 
 export function flattenArray(arr) {
-  if(!Array.isArray(arr)) return [];
- 
-  if(arr.length===0) return [];
-  const [first,...rest] = arr;
-  if(Array.isArray(first)){
-    return [...flattenArray(first),...flattenArray(rest)];
+  if (!Array.isArray(arr)) return [];
+
+  if (arr.length === 0) return [];
+
+  const [first, ...rest] = arr;
+
+  if (Array.isArray(first)) {
+    return [...flattenArray(first), ...flattenArray(rest)];
   }
-  if(typeof first ==='number'){
-    return [first , ...flattenArray(rest)];
-  }
-  
+
+
+  return [first, ...flattenArray(rest)];
 }
 
 export function isPalindrome(str) {
-  // Your code here
+  if (typeof str !== "string") return false;
+
+  str = str.toLowerCase();
+
+ 
+  if (str.length <= 1) return true;
+
+
+  if (str[0] !== str[str.length - 1]) return false;
+
+
+  return isPalindrome(str.slice(1, -1));
 }
 
 export function generatePattern(n) {
-  // Your code here
+  if (!Number.isInteger(n) || n <= 0) return [];
+
+  function buildAscending(i) {
+   
+    if (i === 1) return ["*"];
+
+    const prev = buildAscending(i - 1);
+
+    return [...prev, repeatChar("*", i)];
+  }
+
+  const ascending = buildAscending(n);
+
+  return ascending.concat(ascending.slice(0, -1).reverse());
 }
